@@ -274,3 +274,47 @@ function dadosCliente(idvar) {
 
     });
 }
+
+
+
+function addGeral(idForm, pageacao, idModal, pageretorno) {
+    $('#' + idForm).on('submit', function (e) {
+        e.preventDefault();
+
+        /* variável dados */
+        var dados = $(this).serializeArray(); /* serialize - transforma tudo em array */
+        dados.push(
+            { name: "acao", value: pageacao }, /* Adciona no parâmetro acao da variável dados o valor add cliente */
+        );
+
+        /* Post ajax começa aqui */
+        /* ESTE POST É PADRÃO!!!!! */
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            url: 'controle.php', /* enviamos para a página 'controle.php' que decide o que será feito */
+            data: dados,
+            beforeSend: function (retorno) {
+                /* ESTE POST É PADRÃO!!!!! */
+                /* Post ajax termina aqui */
+       
+            }, success: function (retorno) {
+                if (retorno == 'Gravado') {
+                    $('#' + idModal).modal('hide') /* fechar modal que possui o ID "modalAddCliente" */
+                    msgGeral('Cadastrado com sucesso'); /* função de chamar a mensagem de sucesso no meio da tela */
+                    $('div#msgGeral').html("<div class='alert alert-success' role='alert'>Cadastrado com Sucesso</div>");
+                    listarGeral(pageretorno); /* Função que chama a página que estiver com o nome dentro do parâmetro */
+                 
+                                
+                    /* função que fecha a mensagem de sucesso na div após 3000 (3 seg) */
+                    setTimeout(function () {
+                        $('div#msgGeral').html('');
+                    }, 3000)
+                } else {
+                    $('div#msgGeral').html("<div class='alert alert-warning' role='alert'>Erro na Gravação</div>");
+
+                }
+            }
+        });
+    });
+}

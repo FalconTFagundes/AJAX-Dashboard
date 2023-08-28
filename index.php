@@ -22,21 +22,26 @@
 
         <div class="card">
            <div id="showpage">
-                <?php include_once './cliente/listarCliente.php'; ?>
+                <?php 
+             /* include_once './cliente/listarCliente.php';    */
+                include_once './produto/listarProduto.php'; 
+                ?>
             </div>
 
-                <div id="msgGeral"></div>
+                <div id="msgGeral">
+        
+                </div>
         </div>
     </div>
 
-    <!-- modal de cadastrar começa aqui -->
+<!-- -------------------------------------------------------- MODAIS PAG. CLIENTE ---------------------------------------------------------> 
 
-    <!-- Modal -->
+    <!-- modal de cadastrar começa aqui -->
     <div class="modal fade" id="modalAddCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-warning">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Adicionar Cliente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -60,13 +65,10 @@
             </div>
         </div>
     </div>
-
-
     <!-- modal de cadastrar termina aqui -->
 
-    <!-- modal de alterar começa aqui -->
 
-    <!-- Modal -->
+    <!-- modal de alterar começa aqui -->
     <div class="modal fade" id="modalAltCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -102,16 +104,71 @@
             </div>
         </div>
     </div>
-
-
     <!-- modal de alterar termina aqui -->
 
-    <!-- modal de ativar começa aqui -->
-
-    <!-- Modal -->
 
 
-    <!-- modal desativar termina aqui -->
+<!-- -------------------------------------------------------- MODAIS PAG. PRODUTO ---------------------------------------------------------> 
+
+  <!-- modal de cadastrar começa aqui -->
+  <div class="modal fade" id="modalAddProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Adicionar Produto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="frmAddProduto" class="frmAddProduto" name="frmAddProduto" method="post" action="#">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nomeProduto">Produto</label>
+                            <input type="text" class="form-control form-control-sm" id="nomeProduto" name="nomeProduto" placeholder="Nome do Produto">
+                        </div>
+                        <div class="form-group">
+                            <label for="descricaoProduto">Descrição</label>
+                            <textarea class="form-control" id="descricaoProduto" name="descricaoProduto" rows="3" placeholder="Descrição do Produto"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="valorProduto">Valor</label>
+                            <input type="number" class="form-control form-control-sm " id="valorProduto" name="valorProduto" placeholder="Valor do Produto">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="mdi mdi-close-thick"></i> Fechar</button>
+                        <button type="submit" class="btn btn-primary" onclick="addGeral('frmAddProduto', 'addProduto', 'modalAddProduto', 'listarProduto')"><i class="mdi mdi-content-save"></i> Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- modal de cadastrar termina aqui -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

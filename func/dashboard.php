@@ -127,3 +127,36 @@ function insertDois($tabela, $campos, $valeu1, $valeu2)
     };
     $conn = null;
 }
+
+function insertQuatro($tabela, $campos, $valeu1, $valeu2, $valeu3, $valeu4)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqInsert = $conn->prepare("INSERT INTO $tabela($campos)VALUES(?,?,?,?)");
+        $sqInsert->bindValue(1, $valeu1, PDO::PARAM_STR);
+        $sqInsert->bindValue(2, $valeu2, PDO::PARAM_STR);
+        $sqInsert->bindValue(3, $valeu3, PDO::PARAM_STR);
+        $sqInsert->bindValue(4, $valeu4, PDO::PARAM_STR);
+        $sqInsert->execute();
+        $conn->commit();
+        if ($sqInsert->rowCount() > 0) {
+            return 'Gravado';
+        } else {
+            return 'nGravado';
+        };
+    } catch
+    (PDOExecption $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
+
+
+function formatarDataHoraBr($data)
+{
+    return date('d-m-Y H:i:s', strtotime($data));
+}
